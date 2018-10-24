@@ -19,8 +19,18 @@ def avr(array):
 
 
 a = [2, 8, 9, 11, 78, 1]
-print(find_min(a))
-print(avr(a))
+try:
+    print(find_min(a))
+    print(avr(a))
+except ValueError as e:
+    print(e)
+except TypeError as e:
+    print(e)
 b = []
-print(find_min(b))
-print(avr(b))
+try:
+    print(find_min(b))
+    print(avr(b))
+except ValueError as e:
+    print(e)
+except TypeError as e:
+    print(e)
