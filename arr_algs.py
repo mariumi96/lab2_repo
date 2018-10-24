@@ -1,12 +1,4 @@
-def find_min(arr):
-    if arr:
-        min = arr[0]
-        for el in arr:
-            if el < min:
-                min = el
-        return min
-    else:
-        print('Массив пуст!')
+from functools import reduce
 
 
 def avr(arr):
@@ -18,6 +10,10 @@ def avr(arr):
         return a / n
     else:
         print('Массив пуст!')
+def find_min(array):
+    return reduce(lambda accumulator, item: item if item < accumulator else accumulator, array)
+
+
 
 
 a = [2, 8, 9, 11, 78, 1]
