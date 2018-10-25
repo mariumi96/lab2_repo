@@ -1,20 +1,33 @@
 from functools import reduce
 
 
-def raise_exception_for_incorrect_list(array):
-    if not type(array) is list:
-        raise TypeError("argument have not type list")
-    elif not array:
-        raise ValueError("list is empty")
+def is_empty(func):
+    def wrapper(array):
+        if not array:
+            raise ValueError("list is empty")
+        else:
+            return func(array)
+    return wrapper
 
 
+def is_list(func):
+    def wrapper(array):
+        if not type(array) is list:
+            raise TypeError("argument have not type list")
+        else:
+            return func(array)
+    return wrapper
+
+
+@is_empty
+@is_list
 def find_min(array):
-    raise_exception_for_incorrect_list(array)
     return reduce(lambda accumulator, item: item if item < accumulator else accumulator, array)
 
 
+@is_empty
+@is_list
 def avr(array):
-    raise_exception_for_incorrect_list(array)
     return reduce(lambda accumulator, item: accumulator + item, array) / (float)(len(array))
 
 
@@ -26,6 +39,7 @@ except ValueError as e:
     print(e)
 except TypeError as e:
     print(e)
+
 b = []
 try:
     print(find_min(b))
